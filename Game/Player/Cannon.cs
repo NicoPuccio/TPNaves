@@ -12,7 +12,6 @@ namespace Game
     public class Cannon : GameObject
     {
         private Image img;
-        private int holamundo = 0;
         private int shotInterval;
         private int lastShoot = 0;
         private bool autoFire = false;

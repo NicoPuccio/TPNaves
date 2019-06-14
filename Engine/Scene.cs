@@ -18,8 +18,9 @@ namespace Engine
         public Scene()
         {
             InitializeComponent();
+            instance = this;
         }
-
+        public static Scene instance; 
         private Tally tally = new Tally();
         private GameObject world = new GameObject();
         private double? lastStep = null;

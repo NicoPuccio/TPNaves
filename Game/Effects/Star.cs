@@ -16,6 +16,7 @@ namespace Game
         private Image img;
         float speed;
 
+        
         public Star(Image img, float speed)
         {
             int size = (0.16 * speed).FloorToInt().Max(1);
