@@ -16,7 +16,8 @@ namespace Game
 
         private int shipIndex;
         private EnemyBehavior behavior;
-        
+       
+
         public EnemyShip(int shipIndex, EnemyBehavior behavior)
         {
             this.shipIndex = shipIndex;
@@ -24,6 +25,8 @@ namespace Game
             
             Visible = false;
         }
+
+       
 
         public PlayerShip Player
         {

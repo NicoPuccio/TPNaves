@@ -24,6 +24,7 @@ namespace Game
         private Cannon cannon;
         private bool shieldActivated = false;
         private float speed = MIN_SPEED;
+       
 
 
         public PlayerShip(int shipIndex)
@@ -38,7 +39,11 @@ namespace Game
             cannon.Right = Right;
             cannon.Visible = false;
             AddChild(cannon);
+
+            
         }
+
+        
 
         public bool ShieldActivated
         {
@@ -128,14 +133,24 @@ namespace Game
             }
         }
 
+         public IEnumerable<EnemyShip> EnemyShips
+         {
+            get {
+                IEnumerable<EnemyShip> result = AllObjects
+                    .Select((m) => m as EnemyShip)
+                    .Where((m) => m != null);
+                return result;
+            }
+         } 
+
         private bool CheckForCollision()
         {
-            IEnumerable<EnemyShip> collisions = AllObjects
-                .Where((m) => CollidesWith(m))
-                .Select((m) => m as EnemyShip)
-                .Where((m) => m != null);
-            if (collisions.Count() == 0) return false;
-            foreach (EnemyShip enemy in collisions)
+            IEnumerable<EnemyShip> collisions = EnemyShips
+                .Where((m) => CollidesWith(m) && m != null);
+                //.Select((m) => m as EnemyShip)
+                //.Where((m) => m != null);
+            if (EnemyShips.Count() == 0) return false;
+            foreach (EnemyShip enemy in EnemyShips)
             {
                 enemy.Explode();
             }

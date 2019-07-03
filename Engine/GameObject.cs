@@ -17,11 +17,13 @@ namespace Engine
         private RectangleF bounds = new RectangleF(0, 0, 30, 40);
         private EventHandler eventHandler = new EventHandler();
         private bool visible = true;
+        
 
         public List<GameObject> Children
         {
             get { return children; }
         }
+        
 
         public IEnumerable<GameObject> AllChildren
         {
@@ -322,7 +324,7 @@ namespace Engine
         public bool CollidesWith(GameObject obj)
         {
             return obj != null
-                && obj.Bounds.IntersectsWith(Bounds)
+                && obj.Bounds.IntersectsWith(Bounds) // Funcion de RectangleF
                 && obj.NonTransparentPoints().Intersect(NonTransparentPoints()).Any();
         }
 
