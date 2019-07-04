@@ -149,19 +149,29 @@ namespace Game
                 .Where((m) => CollidesWith(m) && m != null);
                 //.Select((m) => m as EnemyShip)
                 //.Where((m) => m != null);
-            if (EnemyShips.Count() == 0) return false;
-            foreach (EnemyShip enemy in EnemyShips)
+            if (collisions.Count() == 0) return false;
+            foreach (EnemyShip enemy in collisions)
             {
                 enemy.Explode();
             }
             return true;
         }
 
+        public IEnumerable<PowerUp> PowerUps
+        {
+            get
+            {
+                IEnumerable<PowerUp> result = AllObjects
+                    .Select((obj) => obj as PowerUp)
+                    .Where((obj) => obj != null);
+                return result;
+            }
+        }
+
         private void CheckForPowerUps()
         {
-            IEnumerable<PowerUp> pups = AllObjects
-                .Where((m) => CollidesWith(m))
-                .Select((m) => m as PowerUp);
+            IEnumerable<PowerUp> pups = PowerUps
+                .Where((m) => CollidesWith(m));
 
             foreach (PowerUp pup in pups)
             {
