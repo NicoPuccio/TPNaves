@@ -24,8 +24,8 @@ namespace Game
         private Cannon cannon;
         private bool shieldActivated = false;
         private float speed = MIN_SPEED;
-       
 
+        private Image playerShip; 
 
         public PlayerShip(int shipIndex)
         {
@@ -39,7 +39,7 @@ namespace Game
             cannon.Right = Right;
             cannon.Visible = false;
             AddChild(cannon);
-
+            playerShip = LoadImage();
             
         }
 
@@ -201,7 +201,7 @@ namespace Game
         
         public override void DrawOn(Graphics graphics)
         {
-            graphics.DrawImage(LoadImage(), Bounds);
+            graphics.DrawImage(playerShip, Bounds);
         }
         
         private Image LoadImage()
