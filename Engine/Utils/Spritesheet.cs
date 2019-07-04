@@ -24,6 +24,7 @@ namespace Engine.Utils
         
         public Spritesheet(string fileName) : this(Image.FromFile(fileName)) {}
 
+
         public Spritesheet(Image original)
         {
             this.original = original;

@@ -63,11 +63,28 @@ namespace Game
 
         public override void DrawOn(Graphics graphics)
         {
-            graphics.DrawImage(LoadImage(), Bounds);
+            if (EnemyShips.Count == 0)
+            {
+                graphics.DrawImage(LoadImage(), Bounds);
+            }
+            else
+            {
+                foreach (var img in EnemyShips)
+                {
+                    graphics.DrawImage(img, Bounds);
+                }
+            }
+                
         }
+
+        private List<Image> EnemyShips = new List<Image>();
+        
+
+       
 
         private Image LoadImage()
         {
+            
             Image[] ships = Spritesheet.Load(@"Resources\shipsheetparts.png", new Size(128, 128));
             foreach (Image img in ships)
             {
@@ -75,6 +92,7 @@ namespace Game
             }
             Image result = ships[shipIndex];
             Extent = new SizeF(result.Size.Width / 2, result.Size.Height / 2);
+            EnemyShips.Add(result);
             return result;
         }
     }
